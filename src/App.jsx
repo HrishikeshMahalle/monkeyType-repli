@@ -1,3 +1,5 @@
+import Footer from './components/Footer';
+import Header from './components/Header';
 import TypeArea from './components/TypeArea';
 import './style.css'
 
@@ -9,15 +11,9 @@ function App() {
        Left
      </div>
      <div className="center">
-       <div className="header">
-          <strong>MonkeyType Repilca</strong> 
-       </div>
-       <div className="typeArea">
-          <TypeArea/>
-       </div>
-       <div className="footer">
-         Footer
-       </div>
+       <Header/>
+       <TypeArea/>
+       <Footer/>
      </div>
      <div className="right">
        Right

@@ -5,8 +5,8 @@
 body{
     margin: 0;
     min-height: 100vh;
-    background-color: #143F6b;
-    
+    background-color: #041C32;
+    color: #4A505D;
 }
 
 .container-grid{
@@ -20,7 +20,7 @@ body{
 .center{
     width: 70%;
     height: 100vh;
-    background-color: blueviolet;
+    background-color: transparent;
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
@@ -32,8 +32,20 @@ body{
     width: 80%;
     height: 60px;
     padding: 20px;
+    border-radius: 10px;
     margin-top: 50px;   
-    border: 1px solid red;
+    /* border: 1px solid red; */
+    display: flex;
+    gap: 10px;
+}
+
+.header .logo{
+    font-size: 20px;
+    color: #EBECE9;
+}
+.header .features{
+    margin-top: 3px;
+    color: #4A505D;
 }
 
 .center .typeArea{
@@ -41,9 +53,12 @@ body{
     height: 400px;
     padding: 20px;
     margin-top: 100px;
+    font-size: large;
     border: 1px solid red;
-    
-    
+}
+
+.typeArea:focus{
+    border-color: #FFC947;
 }
 .center .footer{
     width: 80%;
@@ -53,5 +68,10 @@ body{
     border: 1px solid red;
     
 }
-
+.correct{
+    color:green
+}
+.incorrect{
+    color:red
+}
 
