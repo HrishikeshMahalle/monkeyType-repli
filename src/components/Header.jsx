@@ -4,7 +4,7 @@ export default function Header() {
     return (
         <div className="header">
             <div className="logo">
-            <strong>Monkeytype</strong>
+            <strong>Type Pratice</strong>
             </div>
             <div className="features">
             ScoreCard
