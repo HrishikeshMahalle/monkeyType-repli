@@ -1,36 +1,43 @@
-import React,{useState, useEffect,useRef} from 'react'
+import React,{useState, useEffect} from 'react'
 import Confitte from 'react-confetti'
 import axios from 'axios'
+import Timer from './Timer'
 
 
 
-export default function TypeArea() {
+export default function TypeArea({completed}) {
 
     // const CmpText = "These are short, famous texts in English from classic sources like the Bible or Shakespeare. Some texts have word definitions and explanations to help you. Some of these texts are written in an old style of English."
 
     //const [text,setText] = useState("")
-    // const [count,setCount] = useState(0)
+    const [word,setWord] = useState(0)
     const [color,setColor] = useState("green")
     const [cmptxt,setCmptxt] = useState("loading...")
     const [effect,setEffect] = useState(false)
  
-
-    
     window.onload= async ()=>{
-        await renderDat()
-       
+        await renderDat() 
     }
    
     const renderDat = () =>{
           axios.get('http://api.quotable.io/random')
         .then(data => setCmptxt(data.data.content))
-        
     }
+    function countWords(str) {
+        str = str.replace(/(^\s*)|(\s*$)/gi,""); //regex to remove start and end spaces
+        str = str.replace(/[ ]{2,}/gi," "); // reduce multiple spaces and single spaces
+        str = str.replace(/\n /,"\n"); //to exclude a new line with start spacing
+        return str.split(' ').length;
+     }
 
-    useEffect(() => {
-        createSpan()
-    }, [cmptxt])
-    let correct= true;
+   function getLength(){
+       console.log(cmptxt.length);
+       let spaces = countWords(cmptxt); 
+       
+   }
+  getLength();
+
+  let correct = true;
     
     function createSpan(x){
         const quoteDisplay = document.getElementById('quoteDisp')
@@ -42,6 +49,9 @@ export default function TypeArea() {
             quoteDisplay.appendChild(charSpan)
         })
     }
+    useEffect(() => {
+        createSpan()
+    }, [cmptxt])
 
 
     const finalFunct = (text) => {
@@ -55,9 +65,7 @@ export default function TypeArea() {
                 char.classList.remove('correct')
                 char.classList.remove('incorrect')
                 setColor("green")
-                
-                correct = false
-                
+                correct = false   
             }
             else if(character === char.innerText){
                 char.classList.add('correct')
@@ -69,7 +77,6 @@ export default function TypeArea() {
                 char.classList.add('incorrect')
                 setColor('red')
                 correct = false
-                
             }
             
         })
@@ -77,15 +84,13 @@ export default function TypeArea() {
             renderDat();
             setColor('green');
             setEffect(true)
+            completed(true)
             document.getElementById('quoteDisp1').value = null 
         }else{
             setEffect(false)
-        
+            completed(false)
         }
     }
- 
-
-
 
     function handleChange(e){
         finalFunct(e.target.value)
@@ -97,7 +102,7 @@ export default function TypeArea() {
             </div>
             {
                 (effect)
-                ? <Confitte width={window.innerWidth} height={window.innerHeight}/>
+                ? <Confitte width={window.innerWidth} height={window.innerHeight}/> 
                 : <div/>
                 
             }

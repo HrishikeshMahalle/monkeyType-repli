@@ -33,10 +33,19 @@ body{
     height: 60px;
     padding: 20px;
     border-radius: 10px;
-    margin-top: 50px;   
+    margin-top: 20px;   
     /* border: 1px solid red; */
     display: flex;
     gap: 10px;
+}
+
+.center .timer{
+    width: 80%;
+    height: 60px;
+    text-align: center;
+    margin-top: 60px;
+    font-size: 60px;
+    color: #FFC947;
 }
 
 .header .logo{
@@ -52,7 +61,7 @@ body{
     width: 80%;
     height: 400px;
     padding: 20px;
-    margin-top: 100px;
+    margin-top: 150px;
     font-size: large;
     border: 1px solid red;
 }
@@ -64,7 +73,7 @@ body{
     width: 80%;
     height: 60px;
     padding: 20px;
-    margin-top: 100px;
+    margin-top: 50px;
     border: 1px solid red;
     display: flex;
     gap: 10px;
