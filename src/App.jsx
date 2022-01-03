@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react'
+import React,{useState} from 'react'
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Timer from './components/Timer';
@@ -10,11 +10,8 @@ import './style.css'
 function App() {
 
   
-const[complete,setComplete] = useState(true);
+const[complete,setComplete] = useState(false);
 
-const completed = (e) =>{
-  setComplete(e);
-}
   return (
    <div className="container-grid">
      <div className="left">
@@ -22,8 +19,8 @@ const completed = (e) =>{
      </div>
      <div className="center">
        <Header/>
-       <Timer completed = {completed} complete={complete}/>
-       <TypeArea completed = {completed }/>
+       <Timer setComplete = {setComplete} complete = {complete} />
+       <TypeArea complete = {complete} setComplete = {setComplete} />
        <Footer/>
      </div>
      <div className="right">

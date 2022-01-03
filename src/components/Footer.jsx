@@ -1,4 +1,4 @@
-import React,{useRef} from 'react'
+import React from 'react'
 import {SiLinkedin} from 'react-icons/si'
 import {BsGithub} from 'react-icons/bs'
 

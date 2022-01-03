@@ -1,16 +1,13 @@
 import React,{useState, useEffect} from 'react'
 import Confitte from 'react-confetti'
 import axios from 'axios'
-import Timer from './Timer'
 
-
-
-export default function TypeArea({completed}) {
+export default function TypeArea({complete,setComplete}) {
 
     // const CmpText = "These are short, famous texts in English from classic sources like the Bible or Shakespeare. Some texts have word definitions and explanations to help you. Some of these texts are written in an old style of English."
 
     //const [text,setText] = useState("")
-    const [word,setWord] = useState(0)
+    const [countWord,setCountWord] = useState(0)
     const [color,setColor] = useState("green")
     const [cmptxt,setCmptxt] = useState("loading...")
     const [effect,setEffect] = useState(false)
@@ -30,15 +27,36 @@ export default function TypeArea({completed}) {
         return str.split(' ').length;
      }
 
-   function getLength(){
-       console.log(cmptxt.length);
-       let spaces = countWords(cmptxt); 
-       
-   }
-  getLength();
+//    function getLength(){
+//        //console.log(cmptxt.length);
+//        let spaces = countWords(cmptxt); 
+//        return spaces;
+//    }
+//   getLength();
 
-  let correct = true;
-    
+  function wordsTyped(x){
+      setCountWord(countWord + x);
+      console.log(countWord)
+  }
+
+  if(complete)
+  {
+      console.log("true")
+  }else{
+      console.log("false")
+  }
+  
+  function showOp(x){
+    console.log(`answer ${x}`)
+  }
+
+  useEffect(()=>{
+      console.log(`total counted words are ${countWord}`)
+        const op = setTimeout(showOp(countWord), 0.1);
+        return clearInterval(()=> op);
+    },[countWord])
+
+   //console.log("typeAre" + completed)    
     function createSpan(x){
         const quoteDisplay = document.getElementById('quoteDisp')
         quoteDisplay.innerHTML = ''
@@ -53,7 +71,8 @@ export default function TypeArea({completed}) {
         createSpan()
     }, [cmptxt])
 
-
+    let correct = true;
+  
     const finalFunct = (text) => {
         const quoteDisplay = document.getElementById('quoteDisp')
         const arrayQuote = quoteDisplay.querySelectorAll('span');
@@ -82,13 +101,15 @@ export default function TypeArea({completed}) {
         })
         if(correct){
             renderDat();
+            wordsTyped(countWords(cmptxt))
             setColor('green');
             setEffect(true)
-            completed(true)
+            // completed(true)
             document.getElementById('quoteDisp1').value = null 
         }else{
             setEffect(false)
-            completed(false)
+            
+            //completed(false)
         }
     }
 
@@ -101,13 +122,12 @@ export default function TypeArea({completed}) {
             <div id="quoteDisp" style={{height:'49%',border:`3px solid ${color}`,margin:'1px',padding:'2px'}} className="show-text">
             </div>
             {
-                (effect)
+                (effect && complete)
                 ? <Confitte width={window.innerWidth} height={window.innerHeight}/> 
                 : <div/>
                 
             }
             
-           
             <div style={textBlock} className="typeArea-main">
                 <textarea
                     type="text"
